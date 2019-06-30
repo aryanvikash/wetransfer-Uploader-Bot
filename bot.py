@@ -67,6 +67,7 @@ def download(update,context):
             context.bot.send_message(chat_id= update.message.chat_id,text="Direct Link : <a href='{}'>Download</a>".format(direct),parse_mode=ParseMode.HTML)
             try:
               os.remove(filename)
+              print("file Removed")
             except Exception as e:
               print(e)
     except Exception as e :
@@ -75,6 +76,7 @@ def download(update,context):
             sent_message.edit_text("Uploading fail :".format(e))
             try:
               os.remove(filename)
+              print("file Removed")
             except Exception as e:
               print(e)
 
