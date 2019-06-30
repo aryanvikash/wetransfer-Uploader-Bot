@@ -13,8 +13,8 @@ from pySmartDL import SmartDL
 
 
 ######################################################################################
-# bot_token ='804364893:AAH9CzzBh4mEtHGkxQeYzMUlyP5oWlGGJ_8'     #link by bot              #
-bot_token ="847417171:AAGmFKo5DAMY1VNGX11R1M3mlc-Wy-ZMtV4"  #chatid bot
+bot_token ='804364893:AAH9CzzBh4mEtHGkxQeYzMUlyP5oWlGGJ_8'     #link by bot              #
+# bot_token ="847417171:AAGmFKo5DAMY1VNGX11R1M3mlc-Wy-ZMtV4"  #chatid bot
 updater = Updater(token= bot_token, use_context=True)                                #
 
 dp = updater.dispatcher                                                          #
@@ -62,8 +62,8 @@ def download(update,context):
             sent_message.edit_text("Uploading Your file")   
             wurl = uploader.upload([filename]) 
             direct = uploader.download_url(wurl)
-            sent_message.edit_text("<a href='{}'>Full Link</a> \n\n <a href='{}'>Direct Link</a>".format(wurl,direct),parse_mode=ParseMode.HTML)
-            context.bot.send_message(chat_id= update.message.chat_id,text="<a href='{}'>Direct Link</a>".format(direct),parse_mode=ParseMode.HTML)
+            sent_message.edit_text(" Full Link : <a href='{}'>Get</a> \n\n Direct Link : <a href='{}'>Get</a>".format(wurl,direct),parse_mode=ParseMode.HTML)
+#             context.bot.send_message(chat_id= update.message.chat_id,text="Direct Link : <a href='{}'>Get</a>".format(direct),parse_mode=ParseMode.HTML)
             
     except Exception as e :
         print(e)
