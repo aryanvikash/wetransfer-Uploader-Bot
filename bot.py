@@ -62,9 +62,12 @@ def download(update,context):
             sent_message.edit_text("Uploading Your file")   
             wurl = uploader.upload([filename]) 
             sent_message.edit_text(" Full Link : <a href='{}'>Download</a>".format(wurl),parse_mode=ParseMode.HTML)
-            direct = uploader.download_url(wurl)
-            print(direct)
-            context.bot.send_message(chat_id= update.message.chat_id,text="Direct Link : <a href='{}'>Download</a>".format(direct),parse_mode=ParseMode.HTML)
+            try:
+              direct = uploader.download_url(wurl)
+              print(direct)
+              context.bot.send_message(chat_id= update.message.chat_id,text="Direct Link : <a href='{}'>Download</a>".format(direct),parse_mode=ParseMode.HTML)
+            except Exception as e:
+              print(e)
             try:
               os.remove(filename)
               print("file Removed")
