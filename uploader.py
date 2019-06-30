@@ -284,19 +284,3 @@ def upload(files: List[str], message: str = '', sender: str = None,
     return _finalize_upload(transfer_id)['shortened_url']
 
 
-def is_downloadable(url):
-    h = requests.head(url, allow_redirects=True)
-    header = h.headers
-    content_type = header.get('content-type')
-    if 'text' in content_type.lower():
-        return False
-    if 'html' in content_type.lower():
-        return False
-    return True
-
-if __name__ == "__main__":
- 	# try:
- 	# 	print(upload(files = "apt.txt"))
- 	# except Exception as e :
- 	# 	print(e)
- 	print(upload(files = ['test.txt']))
