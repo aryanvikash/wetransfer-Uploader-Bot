@@ -44,7 +44,7 @@ def download(update,context):
 
     try:
         obj = SmartDL(url, dest)
-        sent_message.edit_text(obj.start())   
+        obj.start()
         
         sent_message.edit_text("Downloading complete")   
         DownloadStatus = True
