@@ -67,7 +67,7 @@ def download(update,context):
 #               print(direct)
 #               context.bot.send_message(chat_id= update.message.chat_id,text="Direct Link : <a href='{}'>Download</a>".format(direct),parse_mode=ParseMode.HTML)
 #             except Exception as e:
-              print(e)
+#               print(e)
             try:
               os.remove(filename)
               print("file Removed")
