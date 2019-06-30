@@ -63,50 +63,12 @@ def download(update,context):
             wurl = uploader.upload([filename]) 
             direct = uploader.download_url(wurl)
             sent_message.edit_text("<a href='{}'>Full Link</a> \n\n <a href='{}'>Direct Link</a>".format(wurl,direct),parse_mode=ParseMode.HTML)
-            # context.bot.send_message(chat_id= update.message.chat_id,text="".format(direct),parse_mode=ParseMode.HTML)
+            context.bot.send_message(chat_id= update.message.chat_id,text="<a href='{}'>Direct Link</a>".format(direct),parse_mode=ParseMode.HTML)
+            
     except Exception as e :
         print(e)
         if DownloadStatus:
             sent_message.edit_text("Uploading fail :".format(e))
-# @run_async
-# def downloadhand(update, context):
-#     print(update.message.chat_id)
-#     print(update.message.text)
-#         # To Get Google Drive Direct Link
-
-#     if "youtube"  or "youtu" in update.message.text:
-
-#         context.bot.send.message(chat_id =update.message.chat_id, text ="Wait Processing Your Url....")
-#         oldfile = ytaudio.download(update.message.text)
-
-#         filename = oldfile.split(".")
-#         extn = filename[1].replace("mp4",".mp3")
-#         filename = filename[0]+extn
-#         os.rename(oldfile,filename)
-#         context.bot.send_document(chat_id =update.message.chat_id,
-#                     document=open(filename, 'rb'),
-#                     caption ="here is your file")
-
-#     if "drive.google.com"  in update.message.text:
-        
-#         direct_url = direct_link.gdrive_gen(update.message.text)
-#         context.bot.send_message(chat_id = update.message.chat_id, text=direct_url)
-        
-#          # Here is Dropbox part 
-
-#     elif "dropbox.com" in update.message.text:
-#         direct_url = direct_link.db_gen(update.message.text)
-#         context.bot.send_message(chat_id=update.message.chat_id,text = direct_url)
-        
-        
-#     else:
-#         # Here is Download from url and upload as a document
-#         context.bot.send_document(chat_id =update.message.chat_id,
-#             document=open(DLFILE, 'rb'),
-#             caption ="here is your file")
-#         print("send successfully")
-#         # print("we entered else")
-#         # context.bot.send_message(chat_id=update.message.chat_id,text="Sorry Not A valid Url",reply_to_message_id=update.reply_to_message.message_id)
 
 
 start_handler = CommandHandler('start', start)
@@ -115,8 +77,8 @@ dp.add_handler(start_handler)
 downloader_handler = MessageHandler(Filters.regex(r'http' ), download)
 dp.add_handler(downloader_handler)
 
-# help_handler = CommandHandler('help',help)
-# dp.add_handler(help_handler)
+help_handler = CommandHandler('help',help)
+dp.add_handler(help_handler)
 
 
 
