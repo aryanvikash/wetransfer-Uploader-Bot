@@ -13,8 +13,8 @@ from pySmartDL import SmartDL
 
 
 ######################################################################################
-bot_token ='804364893:AAH9CzzBh4mEtHGkxQeYzMUlyP5oWlGGJ_8'                           #
-
+# bot_token ='804364893:AAH9CzzBh4mEtHGkxQeYzMUlyP5oWlGGJ_8'     #link by bot              #
+bot_token ="847417171:AAGmFKo5DAMY1VNGX11R1M3mlc-Wy-ZMtV4"  #chatid bot
 updater = Updater(token= bot_token, use_context=True)                                #
 
 dp = updater.dispatcher                                                          #
@@ -24,12 +24,8 @@ dp = updater.dispatcher                                                         
 
 
 
-
-
-
-
 def help(update, context):
-    context.bot.send_message(chat_id=update.message.chat_id, text="please Use  /id   for Chat ID & Other Info")
+    context.bot.send_message(chat_id=update.message.chat_id, text="I am in Beta",parse_mode=telegram.ParseMode.HTML)
 
 @run_async
 def start(update,context):
@@ -40,7 +36,7 @@ def download(update,context):
 
     url = update.message.text
     url =url.split()
-    sent_message =context.bot.send_message(chat_id=update.message.chat_id,text ="Processing Url...")
+    sent_message =context.bot.send_message(chat_id=update.message.chat_id,text ="Trying To download  ....")
 
     # dest = "C:\\Downloads\\" # or '~/Downloads/' on linux
     dest = "Downloads/"
@@ -65,7 +61,9 @@ def download(update,context):
         if DownloadStatus:
             sent_message.edit_text("Uploading Your file")   
             wurl = uploader.upload([filename]) 
-            sent_message.edit_text(wurl)
+            direct = uploader.download_url(wurl)
+            sent_message.edit_text("<a href='{}'>Full Link</a> \n\n <a href='{}'>Direct Link</a>".format(wurl,direct),parse_mode=ParseMode.HTML)
+            # context.bot.send_message(chat_id= update.message.chat_id,text="".format(direct),parse_mode=ParseMode.HTML)
     except Exception as e :
         print(e)
         if DownloadStatus:
