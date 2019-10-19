@@ -13,8 +13,8 @@ from pySmartDL import SmartDL
 
 
 ######################################################################################
-bot_token ='804364893:AAH9CzzBh4mEtHGkxQeYzMUlyP5oWlGGJ_8'     #link by bot              #
-# bot_token ="847417171:AAGmFKo5DAMY1VNGX11R1M3mlc-Wy-ZMtV4"  #chatid bot
+bot_token ='YOUR_BOT_TOKEN_HERE'       #
+
 updater = Updater(token= bot_token, use_context=True)                                #
 
 dp = updater.dispatcher                                                          #
@@ -40,7 +40,7 @@ def download(update,context):
 
     # dest = "C:\\Downloads\\" # or '~/Downloads/' on linux
     dest = "Downloads/"
-    # dest = "Downloads\\"
+    # dest = "Downloads\\" #For windows
 
     try:
         obj = SmartDL(url, dest)
@@ -62,12 +62,7 @@ def download(update,context):
             sent_message.edit_text("Uploading Your file")   
             wurl = uploader.upload([filename]) 
             sent_message.edit_text(" Full Link : <a href='{}'>Download</a>".format(wurl),parse_mode=ParseMode.HTML)
-#             try:
-#               direct = uploader.download_url(wurl)
-#               print(direct)
-#               context.bot.send_message(chat_id= update.message.chat_id,text="Direct Link : <a href='{}'>Download</a>".format(direct),parse_mode=ParseMode.HTML)
-#             except Exception as e:
-#               print(e)
+
             try:
               os.remove(filename)
               print("file Removed")
